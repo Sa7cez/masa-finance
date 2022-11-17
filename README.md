@@ -1,6 +1,6 @@
-# sui-testnet-nft-bot
+# masa-finance-domain-regger
 
-This script allows you to mint SUI testnet NFTs 
+This script allows you to mint domain in testnet Masa Finance
 
 ## Algoritm
 1) Sign to site
