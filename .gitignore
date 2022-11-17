@@ -2,6 +2,7 @@
 node_modules
 keys.txt
 proxies.txt
+cookies.json
 
 # local env files
 .env

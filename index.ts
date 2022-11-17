@@ -23,7 +23,7 @@ const SOUL_CONTRACT = '0x4454d3892124Ad4d859770660495461D1C5a37F3'
 const SOUL_NAME_CONTRACT = '0x15987A0417D14cc6f3554166bCB4A590f6891B18'
 let domains = []
 const gasLimit = 700000
-const phoneNumber = '+79933471245'
+const phoneNumber = '+79933471244'
 const maxDomains = 1
 
 // const provider = ethers.getDefaultProvider('goerli')
@@ -162,7 +162,7 @@ const registerMasaDomain = async (instance, key, domain, years, maintenance = fa
   const token_balance = await getBalance(signer.address)
   if (token_balance < maxDomains) {
 
-    if (parseFloat(formatEther(balance)) < 0.1)
+    if (parseFloat(formatEther(balance)) <= 0.1)
       return `Wallet balance < 0.1, can't mint NFT. Use faucets like https://goerlifaucet.com/ or https://faucets.chain.link/`
 
     while(!(await isAvailable(domain)))
@@ -203,7 +203,12 @@ const registerMasaDomain = async (instance, key, domain, years, maintenance = fa
 
 let cookies = {}
 const main = async () => {
-  cookies = JSON.parse(await fs.readFile('cookies.json', 'utf8'))
+  
+  try {
+    cookies = JSON.parse(await fs.readFile('cookies.json', 'utf8'))
+  } catch (e) {
+    cookies = {}
+  }
 
   const keys = (await fs.readFile('keys.txt', 'utf8')).split('\n').filter(item => item.length >= 64)
   domains = [...domains, ...(await fs.readFile('domains.txt', 'utf8')).split('\n')]
