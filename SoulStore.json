@@ -1,0 +1,376 @@
+[
+  {
+    "inputs": [
+      { "internalType": "address", "name": "owner", "type": "address" },
+      {
+        "internalType": "contract ISoulboundIdentity",
+        "name": "_soulBoundIdentity",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_nameRegistrationPricePerYear",
+        "type": "uint256"
+      },
+      { "internalType": "address", "name": "_utilityToken", "type": "address" },
+      { "internalType": "address", "name": "_stableCoin", "type": "address" },
+      {
+        "internalType": "address",
+        "name": "_wrappedNativeToken",
+        "type": "address"
+      },
+      { "internalType": "address", "name": "_swapRouter", "type": "address" },
+      { "internalType": "address", "name": "_reserveWallet", "type": "address" }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "previousOwner",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "newOwner",
+        "type": "address"
+      }
+    ],
+    "name": "OwnershipTransferred",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "string",
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "yearsPeriod",
+        "type": "uint256"
+      }
+    ],
+    "name": "SoulNamePurchased",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "string",
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "yearsPeriod",
+        "type": "uint256"
+      }
+    ],
+    "name": "SoulboundIdentityAndNamePurchased",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      }
+    ],
+    "name": "SoulboundIdentityPurchased",
+    "type": "event"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "mintingPrice", "type": "uint256" }
+    ],
+    "name": "_getSwapAmounts",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "priceInStableCoin",
+        "type": "uint256"
+      },
+      { "internalType": "uint256", "name": "priceInETH", "type": "uint256" },
+      {
+        "internalType": "uint256",
+        "name": "priceInUtilityToken",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "_fromToken", "type": "address" },
+      { "internalType": "address", "name": "_toToken", "type": "address" },
+      { "internalType": "uint256", "name": "_amountOut", "type": "uint256" }
+    ],
+    "name": "estimateSwapAmount",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "string", "name": "nameLength", "type": "string" }
+    ],
+    "name": "getNameRegistrationPricePerYear",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "name": "nameRegistrationPricePerYear",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "owner",
+    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "purchaseIdentity",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "paymentMethod", "type": "address" },
+      { "internalType": "string", "name": "name", "type": "string" },
+      { "internalType": "uint256", "name": "yearsPeriod", "type": "uint256" },
+      { "internalType": "string", "name": "_tokenURI", "type": "string" }
+    ],
+    "name": "purchaseIdentityAndName",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "paymentMethod", "type": "address" },
+      { "internalType": "string", "name": "name", "type": "string" },
+      { "internalType": "uint256", "name": "yearsPeriod", "type": "uint256" },
+      { "internalType": "string", "name": "_tokenURI", "type": "string" }
+    ],
+    "name": "purchaseName",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "string", "name": "name", "type": "string" },
+      { "internalType": "uint256", "name": "yearsPeriod", "type": "uint256" }
+    ],
+    "name": "purchaseNameInfo",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "priceInStableCoin",
+        "type": "uint256"
+      },
+      { "internalType": "uint256", "name": "priceInETH", "type": "uint256" },
+      {
+        "internalType": "uint256",
+        "name": "priceInUtilityToken",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "renounceOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "reserveWallet",
+    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "_nameLength", "type": "uint256" },
+      {
+        "internalType": "uint256",
+        "name": "_nameRegistrationPricePerYear",
+        "type": "uint256"
+      }
+    ],
+    "name": "setNameRegistrationPricePerYear",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "_reserveWallet", "type": "address" }
+    ],
+    "name": "setReserveWallet",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "contract ISoulboundIdentity",
+        "name": "_soulboundIdentity",
+        "type": "address"
+      }
+    ],
+    "name": "setSoulboundIdentity",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "_stableCoin", "type": "address" }
+    ],
+    "name": "setStableCoin",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "_swapRouter", "type": "address" }
+    ],
+    "name": "setSwapRouter",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "_utilityToken", "type": "address" }
+    ],
+    "name": "setUtilityToken",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_wrappedNativeToken",
+        "type": "address"
+      }
+    ],
+    "name": "setWrappedNativeToken",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "soulboundIdentity",
+    "outputs": [
+      {
+        "internalType": "contract ISoulboundIdentity",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "stableCoin",
+    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "swapRouter",
+    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "newOwner", "type": "address" }
+    ],
+    "name": "transferOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "utilityToken",
+    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "wrappedNativeToken",
+    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "stateMutability": "view",
+    "type": "function"
+  }
+]
